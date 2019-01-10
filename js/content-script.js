@@ -23,7 +23,11 @@ function start() {
     console.log("Actual Health:" + actualHealth);
     if (href.split("/")[3].split(".html")[0] === "battles") {
         console.log("battles");
-        window.location.href = "http://omega.e-sim.org/battle.html?id=" + $($("#battlesTable").children("tbody").children("tr").get(1)).find("a").attr("href").split("id=")[1]
+		for(let a of $("#battlesTable").children("tbody").children("tr").find("a")){
+			if($(a).text().indexOf("新手战场")!==-1){
+				window.location.href = "http://omega.e-sim.org/battle.html?id="+$(a).attr("href").split("id=")[1]
+			}
+		}
     } else if (href.split("/")[3].split(".html")[0] === "battle") {
         let attack = setTimeout(function () {
             if (actualHealth !== "0.0") {
