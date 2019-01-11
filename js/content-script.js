@@ -14,8 +14,8 @@ function start() {
     let href = window.location.href;
     console.log(href);
     if (document.getElementById("loginContainer")) {
-        $("#registeredPlayerLogin").val("");//在这里填写用户名
-        $("#loginContainer").find("input[name='password']").val("");//在这里填写登录密码
+        $("#registeredPlayerLogin").val("");//Fill in your user name
+        $("#loginContainer").find("input[name='password']").val("");//Fill in your password
         $("#bestForm").find(".foundation-style.button.foundationButton").trigger("click");
         return;
     }
