@@ -3,7 +3,7 @@ This is an automatic plug-in for [e-sim](http://e-sim.org/) games.
  
 It currently includes functions of automatic login, automatic work, automatic training and automatic playing novice battlefield.
 
-##Usage
+## Usage
 To start, we need to unzip the plug-in into a folder and load it in Chrome.
 
 0. Clone the source and place it in a stable directory.
