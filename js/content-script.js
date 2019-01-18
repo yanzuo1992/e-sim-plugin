@@ -9,23 +9,48 @@ $(document).ready(function () {
             }
         });
 });
+let hasTime = -1;
+
+function check_time() {
+    $.ajax({
+        url: "limitsReset.html",
+        data: null,
+        success: (data) => {
+            hasTime = parseInt(data.replace("\"", ""))
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            check_time();
+        }
+    });
+}
 
 function start() {
     let href = window.location.href;
     console.log(href);
     if (document.getElementById("loginContainer")) {
-        $("#registeredPlayerLogin").val("");//Fill in your user name
-        $("#loginContainer").find("input[name='password']").val("");//Fill in your password
+        $("#registeredPlayerLogin").val("lightningbear");//Fill in your user name
+        $("#loginContainer").find("input[name='password']").val("lightningbear");//Fill in your password
         $("#bestForm").find(".foundation-style.button.foundationButton").trigger("click");
         return;
     }
     console.log("plugin starting");
-    let limitReset = $("#limitReset").text();
-    setTimeout(function () {
-        window.location.reload();//刷新当前页面.
-    }, parseInt(limitReset) * 1000);
+    let limitReset = -1;
+
+    check_time();
+    let timer;
+    let check = setInterval(function () {
+        console.log("wait check time :" + hasTime);
+        if (hasTime !== -1) {
+            timer = setTimeout(function () {
+                window.location.reload();//刷新当前页面.
+            }, parseInt(hasTime) * 1000);
+            console.log("The timer has been created. Wait " + hasTime + " seconds to refresh the page.")
+            window.clearInterval(check)
+        }
+    }, 1000);
+
     setInterval(function () {
-        console.log("Count down:" + $("#minutesLimit").text() + $("#secondsLimit").text());
+        console.log("Count down:" + $("#limit_timer_time_text").text());
     }, 10000);
     console.log("Limit Reset:" + limitReset);
     let actualHealth = $("#actualHealth").text();
